@@ -11,6 +11,7 @@ import UIKit
 class NewsFeedController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // data for table view
     var headline = [NewsHeadline]() {
@@ -22,6 +23,8 @@ class NewsFeedController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self // NewsFeedController is the dataSource object for the table view
+        tableView.delegate = self
+        searchBar.delegate = self
         loadData()
     }
     
@@ -29,6 +32,9 @@ class NewsFeedController: UIViewController {
         headline = HeadlineData.getHeadlines() // [NewsHeadline]
     }
 
+    func filterHeadlines(for searchText: String) {
+        headline = HeadlineData.getHeadlines().filter { $0.title.lowercased().contains(searchText.lowercased()) }
+    }
 
 }
 
@@ -40,5 +46,31 @@ extension NewsFeedController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "headlineCell", for: indexPath)
         return cell
+    }
+}
+
+extension NewsFeedController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180
+    }
+}
+
+extension NewsFeedController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // dismiss the keyboard
+        searchBar.resignFirstResponder()
+    }
+    
+    //TODO: real time search
+    //TODO: what happends when the search bar is empty
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            // search text is empty here so we get back all the original headlines using out loadData() method
+            loadData()
+            return
+        }
+        filterHeadlines(for: searchText)
+        
     }
 }
