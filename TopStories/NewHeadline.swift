@@ -16,6 +16,7 @@ struct HeadlineData: Codable {
 struct NewsHeadline: Codable {
     let title: String
     let abstract: String
+    let byline: String
 }
 
 extension HeadlineData {

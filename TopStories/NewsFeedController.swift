@@ -14,7 +14,7 @@ class NewsFeedController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     // data for table view
-    var headline = [NewsHeadline]() {
+    var headlines = [NewsHeadline]() {
         didSet {
             tableView.reloadData()
         }
@@ -29,22 +29,25 @@ class NewsFeedController: UIViewController {
     }
     
     func loadData() {
-        headline = HeadlineData.getHeadlines() // [NewsHeadline]
+        headlines = HeadlineData.getHeadlines() // [NewsHeadline]
     }
 
     func filterHeadlines(for searchText: String) {
-        headline = HeadlineData.getHeadlines().filter { $0.title.lowercased().contains(searchText.lowercased()) }
+        headlines = HeadlineData.getHeadlines().filter { $0.title.lowercased().contains(searchText.lowercased()) }
     }
 
 }
 
 extension NewsFeedController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return headline.count
+        return headlines.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "headlineCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "headlineCell", for: indexPath) as? HeadlineCell else { fatalError("couldn't dequeue a HeadlineCell") }
+        
+        let headline = headlines[indexPath.row]
+        cell.configureCell(for: headline)
         return cell
     }
 }
