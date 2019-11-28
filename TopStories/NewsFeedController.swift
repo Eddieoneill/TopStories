@@ -64,9 +64,6 @@ extension NewsFeedController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
     
-    //TODO: real time search
-    //TODO: what happends when the search bar is empty
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
             // search text is empty here so we get back all the original headlines using out loadData() method
@@ -75,5 +72,19 @@ extension NewsFeedController: UISearchBarDelegate {
         }
         filterHeadlines(for: searchText)
         
+    }
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }

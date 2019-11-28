@@ -16,13 +16,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d8s-LT-94r">
-                                <rect key="frame" x="0.0" y="206" width="414" height="656"/>
+                                <rect key="frame" x="0.0" y="166" width="414" height="696"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headlineCell" rowHeight="181" id="FjQ-E7-kww">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headlineCell" rowHeight="181" id="FjQ-E7-kww" customClass="HeadlineCell" customModule="TopStories" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="181"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FjQ-E7-kww" id="xPP-cl-n8A" customClass="HeadlineCell" customModule="TopStories" customModuleProvider="target">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FjQ-E7-kww" id="xPP-cl-n8A">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="181"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -56,17 +56,17 @@
                                                 <constraint firstItem="CEh-jx-VNe" firstAttribute="top" secondItem="t6o-c4-AiV" secondAttribute="top" id="vvf-sI-bwO"/>
                                                 <constraint firstItem="t6o-c4-AiV" firstAttribute="leading" secondItem="CEh-jx-VNe" secondAttribute="trailing" constant="8" id="xwm-Ui-9jX"/>
                                             </constraints>
-                                            <connections>
-                                                <outlet property="bylineLabel" destination="Vm8-qH-P3O" id="XzZ-hh-gJV"/>
-                                                <outlet property="headlineImageView" destination="t6o-c4-AiV" id="8hI-nG-Ln2"/>
-                                                <outlet property="headlineTitleLabel" destination="CEh-jx-VNe" id="2mf-ys-cQX"/>
-                                            </connections>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bylineLabel" destination="Vm8-qH-P3O" id="azj-lN-Ro4"/>
+                                            <outlet property="headlineImageView" destination="t6o-c4-AiV" id="AXo-dw-LLb"/>
+                                            <outlet property="headlineTitleLabel" destination="CEh-jx-VNe" id="8gi-RC-CU2"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="search by title" translatesAutoresizingMaskIntoConstraints="NO" id="TGP-mY-dW1">
-                                <rect key="frame" x="0.0" y="150" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="110" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -78,14 +78,14 @@
                             <constraint firstItem="d8s-LT-94r" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="q2t-yd-JBf"/>
                             <constraint firstItem="TGP-mY-dW1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="r5g-pP-675"/>
                             <constraint firstItem="d8s-LT-94r" firstAttribute="top" secondItem="TGP-mY-dW1" secondAttribute="bottom" id="wjS-fR-0bP"/>
-                            <constraint firstItem="TGP-mY-dW1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="150" id="yH7-Hq-L7l"/>
+                            <constraint firstItem="TGP-mY-dW1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="110" id="yH7-Hq-L7l"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Top Stories" id="sa5-EP-Ljn"/>
                     <connections>
-                        <outlet property="searchBar" destination="TGP-mY-dW1" id="8e7-RX-ulc"/>
-                        <outlet property="tableView" destination="d8s-LT-94r" id="s1I-wc-d5h"/>
+                        <outlet property="searchBar" destination="TGP-mY-dW1" id="RdN-br-04Y"/>
+                        <outlet property="tableView" destination="d8s-LT-94r" id="mn4-WB-c4f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

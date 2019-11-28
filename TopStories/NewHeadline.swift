@@ -17,12 +17,18 @@ struct NewsHeadline: Codable {
     let title: String
     let abstract: String
     let byline: String
+    let multimedia: [HeadlinePhoto]
+}
+
+struct HeadlinePhoto: Codable {
+    let url: String
+    let format: String
 }
 
 extension HeadlineData {
     // parse the "topStoriesTechnology.json" into an [NewsHeadline] objects
     static func getHeadlines() -> [NewsHeadline] {
-        var headlines = [NewsHeadline]()
+        var headline = [NewsHeadline]()
         
         // the app Bundle() allows to access (read) our app resources and files, e.g mp3 file or in our case the topStoriesTechnology.json
         
@@ -37,13 +43,15 @@ extension HeadlineData {
             // parse data to our Swift [NewsHeadline]
             
             let headlinesData = try JSONDecoder().decode(HeadlineData.self, from: data)
-            headlines = headlinesData.results // [NewsHeadline]
+            headline = headlinesData.results // [NewsHeadline]
             
             
         } catch {
             fatalError("faild to load contents \(error)")
         }
         
-        return headlines
+        return headline
     }
 }
+
+

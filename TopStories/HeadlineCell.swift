@@ -27,6 +27,9 @@ class HeadlineCell: UITableViewCell {
     func configureCell(for headline: NewsHeadline) {
         headlineTitleLabel.text = headline.title
         bylineLabel.text = headline.byline
+        for data in headline.multimedia where data.format == "thumbLarge" {
+            headlineImageView.load(url: URL(string: data.url)!)
+        }
     }
     
 }
